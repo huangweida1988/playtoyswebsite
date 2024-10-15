@@ -5,42 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Player</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            padding: 20px;
-        }
-
-        .video-player {
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        video {
-            width: 100%;
-            height: auto;
-        }
-
-        .back-button {
-            display: inline-block;
-            margin-bottom: 20px;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-
-        .back-button:hover {
-            background-color: #0056b3;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -51,25 +16,126 @@
 
         <!-- 视频播放器 -->
         <div class="video-player">
-            <video id="videoPlayer" controls>
+            <video id="videoPlayer" autoplay controls>
                 <source id="videoSource" src="" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
         </div>
+
+        <!-- Google Ad Section -->
+        <div class="google-ad">
+            <img src="google-ad.jpg" alt="Google Ad" style="width: 100%;">
+        </div>
+        
+        <!-- Other Video Grid Section -->
+        <div id="video-list" class="other-videos">
+            <!-- <div class="video-item" onclick="window.location.href='video-page.html'">
+                        <img src="previews-main/preview.png" alt="Video 1">
+                        <div class="play-button" ></div> 
+                        <p class="video-title">Video Title 1</p>
+                    </div> -->
+        
+            <!-- Add more video items as needed -->
+        </div>
+        <!-- 分页按钮 -->
+        <div class="pagination" id="pagination">
+            <!-- 分页按钮通过jQuery动态生成 -->
+        </div>
+        
+        <!-- Footer Section -->
+        <footer>
+            <p>&copy; 2024 Your Company. All Rights Reserved.
+                <a href="privacy-policy.html">Privacy Policy</a> |
+                <a href="terms-of-service.html">Terms of Service</a>
+            </p>
+        </footer>
+
     </div>
 
     <!-- 引入jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    <script src="js/jquery-3.7.1.min.js"></script>
+    
     <script>
+
         $(document).ready(function () {
             // 从URL获取视频链接并设置给播放器
             var urlParams = new URLSearchParams(window.location.search);
-            var videoSrc = urlParams.get('video');
+            // var videoSrc = urlParams.get('video');
+            var videoSrc = sessionStorage.getItem("video")
             if (videoSrc) {
                 $('#videoSource').attr('src', videoSrc);
                 $('#videoPlayer')[0].load();
+                // 获取视频元素
+                var video = document.getElementById('videoPlayer');
+
+                // 设置视频为静音并尝试自动播放
+                video.muted = true;  // 确保视频静音
+                video.play().catch(function (error) {
+                    console.log('自动播放失败:', error);
+                    // 如果自动播放失败，可以在这里处理，显示一个按钮提示用户手动播放
+                });
+                video.muted = false;  //
             }
+
+
+            const itemsPerPage = 12;  // 每页显示12个视频
+            let currentPage = 1;
+            let totalPages = 0;
+            let videos = [];
+
+            // 渲染当前页的视频
+            function renderPage(page) {
+                $('#video-list').empty();  // 清空当前视频列表
+                const startIndex = (page - 1) * itemsPerPage;
+                const endIndex = Math.min(startIndex + itemsPerPage, videos.length);
+                for (let i = startIndex; i < endIndex; i++) {
+                    const video = videos[i];
+                    // const videoItem = `
+                    //         <div class="video-item" data-video="${video.video}">
+                    //             <img src="${video.thumbnail}" alt="${video.title}">
+                    //             <p class="video-title">${video.title}</p>
+                    //         </div>`;
+                    const videoItem = `
+                        <div class="video-item">
+                            <img src="${video.thumbnail}" alt="${video.title}">
+                            <div class="play-button" data-video="${video.video}"></div> <!-- 播放按钮 -->
+                            <p class="video-title">${video.title}</p>
+                        </div>`;
+                    $('#video-list').append(videoItem);
+                }
+
+                // 添加点击事件跳转到播放页面
+                $('.play-button').click(function () {
+                    const videoSrc = $(this).data('video');
+                    // window.location.href = 'player.html?video=' + videoSrc;
+                    sessionStorage.setItem("video", videoSrc);
+                    window.location.href = 'player.html';
+                });
+            }
+
+            // 渲染分页按钮
+            function renderPagination() {
+                $('#pagination').empty();  // 清空当前的分页按钮
+                for (let i = 1; i <= totalPages; i++) {
+                    const pageButton = `<button class="${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
+                    $('#pagination').append(pageButton);
+                }
+
+                // 分页按钮点击事件
+                $('#pagination button').click(function () {
+                    currentPage = parseInt($(this).data('page'));
+                    renderPage(currentPage);  // 渲染点击的页数
+                    renderPagination();  // 更新分页按钮
+                });
+            }
+
+            // 从TXT文件读取数据
+            $.get('https://raw.githubusercontent.com/huangweida1988/playtoyswebsite/refs/heads/main/datas.txt', function (data) {
+                videos = JSON.parse(data);  // 解析JSON数据
+                totalPages = Math.ceil(videos.length / itemsPerPage);  // 计算总页数
+                renderPage(currentPage);  // 渲染第一页
+                renderPagination();  // 渲染分页按钮
+            });
         });
     </script>
 
