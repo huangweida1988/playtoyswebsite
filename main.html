@@ -175,6 +175,30 @@
             }
         }
 
+        .pagination {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .pagination button {
+            padding: 10px 20px;
+            margin: 0 5px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .pagination button:hover {
+            background-color: #0056b3;
+        }
+
+        .pagination button.active {
+            background-color: #0056b3;
+        }
+
+
         footer {
             margin-top: 30px;
             text-align: center;
@@ -197,26 +221,26 @@
 
         <!-- Main Video and Recommendation List -->
         <div class="main-content">
-            <div class="main-video" onclick="window.location.href='main-video-page.html'">
+            <div class="main-video" >
                 <img src="previews-main/main.png" alt="Main Video Preview">
-                <div class="play-button"></div> <!-- 播放按钮 -->
+                <div class="play-button" data-video="https://github.com/huangweida1988/playtoyswebsite/releases/download/test/15minutspunch.mp4"></div> <!-- 播放按钮 -->
                 <p>Main Video Title</p>
             </div>
 
             <div class="recommendations">
-                <div class="recommendation-item" onclick="window.location.href='video-page.html'">
+                <div class="recommendation-item" >
                     <img src="previews-main/preview.png" alt="Recommended Video 1">
-                    <div class="play-button"></div> <!-- 播放按钮 -->
+                    <div class="play-button" data-video="https://github.com/huangweida1988/playtoyswebsite/releases/download/test/qicaiyanguang.mp4"></div> <!-- 播放按钮 -->
                     <p class="recommendation-title">Recommended Video Title 1</p>
                 </div>
-                <div class="recommendation-item" onclick="window.location.href='video-page.html'">
+                <div class="recommendation-item" >
                     <img src="previews-main/preview.png" alt="Recommended Video 2">
-                    <div class="play-button"></div> <!-- 播放按钮 -->
+                    <div class="play-button" data-video="https://github.com/huangweida1988/playtoyswebsite/releases/download/test/qicaiyanguang.mp4"></div> <!-- 播放按钮 -->
                     <p class="recommendation-title">Recommended Video Title 2</p>
                 </div>
-                <div class="recommendation-item" onclick="window.location.href='video-page.html'">
+                <div class="recommendation-item" >
                     <img src="previews-main/preview.png" alt="Recommended Video 3">
-                    <div class="play-button"></div> <!-- 播放按钮 -->
+                    <div class="play-button" data-video="https://github.com/huangweida1988/playtoyswebsite/releases/download/test/qicaiyanguang.mp4"></div> <!-- 播放按钮 -->
                     <p class="recommendation-title">Recommended Video Title 3</p>
                 </div>
                 <!-- Add more recommendation items as needed -->
@@ -229,74 +253,18 @@
         </div>
 
         <!-- Other Video Grid Section -->
-        <div class="other-videos">
-            <div class="video-item" onclick="window.location.href='video-page.html'">
+        <div id="video-list" class="other-videos">
+            <!-- <div class="video-item" onclick="window.location.href='video-page.html'">
                 <img src="previews-main/preview.png" alt="Video 1">
-                <div class="play-button"></div> <!-- 播放按钮 -->
+                <div class="play-button" ></div> 
                 <p class="video-title">Video Title 1</p>
-            </div>
-            <div class="video-item" onclick="window.location.href='video-page.html'">
-                <img src="previews-main/preview.png" alt="Video 2">
-                <div class="play-button"></div> <!-- 播放按钮 -->
-                <p class="video-title">Video Title 2</p>
-            </div>
-            <div class="video-item" onclick="window.location.href='video-page.html'">
-                <img src="previews-main/preview.png" alt="Video 3">
-                <div class="play-button"></div> <!-- 播放按钮 -->
-                <p class="video-title">Video Title 3</p>
-            </div>
-            <div class="video-item" onclick="window.location.href='video-page.html'">
-                <img src="previews-main/preview.png" alt="Video 4">
-                <div class="play-button"></div> <!-- 播放按钮 -->
-                <p class="video-title">Video Title 4</p>
-            </div>
+            </div> -->
+            
             <!-- Add more video items as needed -->
         </div>
-        <div class="other-videos">
-            <div class="video-item" onclick="window.location.href='video-page.html'">
-                <img src="previews-main/preview.png" alt="Video 1">
-                <div class="play-button"></div> <!-- 播放按钮 -->
-                <p class="video-title">Video Title 1</p>
-            </div>
-            <div class="video-item" onclick="window.location.href='video-page.html'">
-                <img src="previews-main/preview.png" alt="Video 2">
-                <div class="play-button"></div> <!-- 播放按钮 -->
-                <p class="video-title">Video Title 2</p>
-            </div>
-            <div class="video-item" onclick="window.location.href='video-page.html'">
-                <img src="previews-main/preview.png" alt="Video 3">
-                <div class="play-button"></div> <!-- 播放按钮 -->
-                <p class="video-title">Video Title 3</p>
-            </div>
-            <div class="video-item" onclick="window.location.href='video-page.html'">
-                <img src="previews-main/preview.png" alt="Video 4">
-                <div class="play-button"></div> <!-- 播放按钮 -->
-                <p class="video-title">Video Title 4</p>
-            </div>
-            <!-- Add more video items as needed -->
-        </div>
-        <div class="other-videos">
-            <div class="video-item" onclick="window.location.href='video-page.html'">
-                <img src="previews-main/preview.png" alt="Video 1">
-                <div class="play-button"></div> <!-- 播放按钮 -->
-                <p class="video-title">Video Title 1</p>
-            </div>
-            <div class="video-item" onclick="window.location.href='video-page.html'">
-                <img src="previews-main/preview.png" alt="Video 2">
-                <div class="play-button"></div> <!-- 播放按钮 -->
-                <p class="video-title">Video Title 2</p>
-            </div>
-            <div class="video-item" onclick="window.location.href='video-page.html'">
-                <img src="previews-main/preview.png" alt="Video 3">
-                <div class="play-button"></div> <!-- 播放按钮 -->
-                <p class="video-title">Video Title 3</p>
-            </div>
-            <div class="video-item" onclick="window.location.href='video-page.html'">
-                <img src="previews-main/preview.png" alt="Video 4">
-                <div class="play-button"></div> <!-- 播放按钮 -->
-                <p class="video-title">Video Title 4</p>
-            </div>
-            <!-- Add more video items as needed -->
+        <!-- 分页按钮 -->
+        <div class="pagination" id="pagination">
+            <!-- 分页按钮通过jQuery动态生成 -->
         </div>
 
         <!-- Footer Section -->
@@ -314,28 +282,65 @@
     <script src="js/jquery-3.7.1.min.js"></script>
     
     <script>
-        $(document).ready(function () {
-            // 从TXT文件读取数据并生成视频预览
-            $.get('videos.txt', function (data) {
-                // 将txt文件内容转换为JSON
-                var videos = JSON.parse(data);
-                var videoList = $('#video-list');
-                $.each(videos, function (index, video) {
-                    var videoItem = `
-                        <div class="video-item" data-video="${video.video}">
-                            <img src="${video.thumbnail}" alt="${video.title}">
-                            <p class="video-title">${video.title}</p>
-                        </div>`;
-                    videoList.append(videoItem);
-                });
 
-                // 点击事件跳转到播放页面
-                $('.video-item').click(function () {
-                    var videoSrc = $(this).data('video');
-                    window.location.href = 'video_player.html?video=' + videoSrc;
-                });
+    $(document).ready(function () {
+        const itemsPerPage = 12;  // 每页显示12个视频
+        let currentPage = 1;
+        let totalPages = 0;
+        let videos = [];
+
+        // 渲染当前页的视频
+        function renderPage(page) {
+            $('#video-list').empty();  // 清空当前视频列表
+            const startIndex = (page - 1) * itemsPerPage;
+            const endIndex = Math.min(startIndex + itemsPerPage, videos.length);
+            for (let i = startIndex; i < endIndex; i++) {
+                const video = videos[i];
+                // const videoItem = `
+                //         <div class="video-item" data-video="${video.video}">
+                //             <img src="${video.thumbnail}" alt="${video.title}">
+                //             <p class="video-title">${video.title}</p>
+                //         </div>`;
+                const videoItem = `
+                    <div class="video-item">
+                        <img src="${video.thumbnail}" alt="${video.title}">
+                        <div class="play-button" data-video="${video.video}"></div> <!-- 播放按钮 -->
+                        <p class="video-title">${video.title}</p>
+                    </div>`;
+                $('#video-list').append(videoItem);
+            }
+
+            // 添加点击事件跳转到播放页面
+            $('.play-button').click(function () {
+                const videoSrc = $(this).data('video');
+                window.location.href = 'player.html?video=' + videoSrc;
             });
+        }
+
+        // 渲染分页按钮
+        function renderPagination() {
+            $('#pagination').empty();  // 清空当前的分页按钮
+            for (let i = 1; i <= totalPages; i++) {
+                const pageButton = `<button class="${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
+                $('#pagination').append(pageButton);
+            }
+
+            // 分页按钮点击事件
+            $('#pagination button').click(function () {
+                currentPage = parseInt($(this).data('page'));
+                renderPage(currentPage);  // 渲染点击的页数
+                renderPagination();  // 更新分页按钮
+            });
+        }
+        
+        // 从TXT文件读取数据
+        $.get('https://raw.githubusercontent.com/huangweida1988/playtoyswebsite/refs/heads/main/datas.txt', function (data) {
+            videos = JSON.parse(data);  // 解析JSON数据
+            totalPages = Math.ceil(videos.length / itemsPerPage);  // 计算总页数
+            renderPage(currentPage);  // 渲染第一页
+            renderPagination();  // 渲染分页按钮
         });
+    });
     </script>
 </body>
 
