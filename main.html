@@ -4,20 +4,339 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Site</title>
+    <title>Video Showcase</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .main-content {
+            display: flex;
+            align-items: stretch;
+            height: 500px;
+            /* 设置固定高度 */
+            position: relative;
+        }
+
+        .main-video {
+            flex: 3;
+            margin-right: 20px;
+            position: relative;
+            /* 使播放按钮绝对定位 */
+            cursor: pointer;
+        }
+
+        .main-video img {
+            width: 100%;
+            height: auto;
+        }
+
+        .main-video p {
+            text-align: center;
+            /* 让标题居中 */
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .recommendations {
+            flex: 1;
+            overflow-y: auto;
+            /* 启用滚动 */
+            height: 100%;
+            /* 确保高度继承父容器 */
+        }
+
+        /* 自定义滚动条样式 */
+        .recommendations::-webkit-scrollbar {
+            width: 10px;
+            /* 滚动条宽度 */
+        }
+
+        .recommendations::-webkit-scrollbar-thumb {
+            background-color: #888;
+            /* 滚动条滑块颜色 */
+            border-radius: 10px;
+            /* 圆角滑块 */
+        }
+
+        .recommendations::-webkit-scrollbar-thumb:hover {
+            background-color: #555;
+            /* 悬停时滑块颜色 */
+        }
+
+        .recommendations::-webkit-scrollbar-track {
+            background-color: #f1f1f1;
+            /* 滚动条轨道颜色 */
+            border-radius: 10px;
+            /* 圆角轨道 */
+        }
+
+        .recommendation-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 10px;
+            position: relative;
+            /* 使播放按钮绝对定位 */
+            cursor: pointer;
+        }
+
+        .recommendation-item img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 5px;
+        }
+
+        .recommendation-title {
+            width: 100%;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .recommendation-title:hover {
+            white-space: normal;
+            background-color: #f0f0f0;
+        }
+
+        .google-ad {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .other-videos {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .video-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            /* 使播放按钮绝对定位 */
+            cursor: pointer;
+        }
+
+        .video-item img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 5px;
+        }
+
+        .video-title {
+            width: 100%;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .video-title:hover {
+            white-space: normal;
+            background-color: #f0f0f0;
+        }
+
+        /* 播放按钮样式 */
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            background: url('ui/playbt.png') no-repeat center center;
+            background-size: contain;
+            animation: pulse 2s infinite;
+        }
+
+        /* 播放按钮的缩放动画 */
+        @keyframes pulse {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 14px;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+
+        footer a {
+            color: #000;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+    </style>
 </head>
 
 <body>
-    <video controls autoplay>
-        <source src="https://github.com/huangweida1988/playtoyswebsite/releases/download/test/15minutspunch.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-    <video controls autoplay>
-        <source
-            src="https://github.com/huangweida1988/playtoyswebsite/releases/download/test/qicaiyanguang.mp4"
-            type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+
+    <div class="container">
+
+        <!-- Main Video and Recommendation List -->
+        <div class="main-content">
+            <div class="main-video" onclick="window.location.href='main-video-page.html'">
+                <img src="previews-main/main.png" alt="Main Video Preview">
+                <div class="play-button"></div> <!-- 播放按钮 -->
+                <p>Main Video Title</p>
+            </div>
+
+            <div class="recommendations">
+                <div class="recommendation-item" onclick="window.location.href='video-page.html'">
+                    <img src="previews-main/preview.png" alt="Recommended Video 1">
+                    <div class="play-button"></div> <!-- 播放按钮 -->
+                    <p class="recommendation-title">Recommended Video Title 1</p>
+                </div>
+                <div class="recommendation-item" onclick="window.location.href='video-page.html'">
+                    <img src="previews-main/preview.png" alt="Recommended Video 2">
+                    <div class="play-button"></div> <!-- 播放按钮 -->
+                    <p class="recommendation-title">Recommended Video Title 2</p>
+                </div>
+                <div class="recommendation-item" onclick="window.location.href='video-page.html'">
+                    <img src="previews-main/preview.png" alt="Recommended Video 3">
+                    <div class="play-button"></div> <!-- 播放按钮 -->
+                    <p class="recommendation-title">Recommended Video Title 3</p>
+                </div>
+                <!-- Add more recommendation items as needed -->
+            </div>
+        </div>
+
+        <!-- Google Ad Section -->
+        <div class="google-ad">
+            <img src="google-ad.jpg" alt="Google Ad" style="width: 100%;">
+        </div>
+
+        <!-- Other Video Grid Section -->
+        <div class="other-videos">
+            <div class="video-item" onclick="window.location.href='video-page.html'">
+                <img src="previews-main/preview.png" alt="Video 1">
+                <div class="play-button"></div> <!-- 播放按钮 -->
+                <p class="video-title">Video Title 1</p>
+            </div>
+            <div class="video-item" onclick="window.location.href='video-page.html'">
+                <img src="previews-main/preview.png" alt="Video 2">
+                <div class="play-button"></div> <!-- 播放按钮 -->
+                <p class="video-title">Video Title 2</p>
+            </div>
+            <div class="video-item" onclick="window.location.href='video-page.html'">
+                <img src="previews-main/preview.png" alt="Video 3">
+                <div class="play-button"></div> <!-- 播放按钮 -->
+                <p class="video-title">Video Title 3</p>
+            </div>
+            <div class="video-item" onclick="window.location.href='video-page.html'">
+                <img src="previews-main/preview.png" alt="Video 4">
+                <div class="play-button"></div> <!-- 播放按钮 -->
+                <p class="video-title">Video Title 4</p>
+            </div>
+            <!-- Add more video items as needed -->
+        </div>
+        <div class="other-videos">
+            <div class="video-item" onclick="window.location.href='video-page.html'">
+                <img src="previews-main/preview.png" alt="Video 1">
+                <div class="play-button"></div> <!-- 播放按钮 -->
+                <p class="video-title">Video Title 1</p>
+            </div>
+            <div class="video-item" onclick="window.location.href='video-page.html'">
+                <img src="previews-main/preview.png" alt="Video 2">
+                <div class="play-button"></div> <!-- 播放按钮 -->
+                <p class="video-title">Video Title 2</p>
+            </div>
+            <div class="video-item" onclick="window.location.href='video-page.html'">
+                <img src="previews-main/preview.png" alt="Video 3">
+                <div class="play-button"></div> <!-- 播放按钮 -->
+                <p class="video-title">Video Title 3</p>
+            </div>
+            <div class="video-item" onclick="window.location.href='video-page.html'">
+                <img src="previews-main/preview.png" alt="Video 4">
+                <div class="play-button"></div> <!-- 播放按钮 -->
+                <p class="video-title">Video Title 4</p>
+            </div>
+            <!-- Add more video items as needed -->
+        </div>
+        <div class="other-videos">
+            <div class="video-item" onclick="window.location.href='video-page.html'">
+                <img src="previews-main/preview.png" alt="Video 1">
+                <div class="play-button"></div> <!-- 播放按钮 -->
+                <p class="video-title">Video Title 1</p>
+            </div>
+            <div class="video-item" onclick="window.location.href='video-page.html'">
+                <img src="previews-main/preview.png" alt="Video 2">
+                <div class="play-button"></div> <!-- 播放按钮 -->
+                <p class="video-title">Video Title 2</p>
+            </div>
+            <div class="video-item" onclick="window.location.href='video-page.html'">
+                <img src="previews-main/preview.png" alt="Video 3">
+                <div class="play-button"></div> <!-- 播放按钮 -->
+                <p class="video-title">Video Title 3</p>
+            </div>
+            <div class="video-item" onclick="window.location.href='video-page.html'">
+                <img src="previews-main/preview.png" alt="Video 4">
+                <div class="play-button"></div> <!-- 播放按钮 -->
+                <p class="video-title">Video Title 4</p>
+            </div>
+            <!-- Add more video items as needed -->
+        </div>
+
+        <!-- Footer Section -->
+        <footer>
+            <p>&copy; 2024 Your Company. All Rights Reserved.
+                <a href="privacy-policy.html">Privacy Policy</a> |
+                <a href="terms-of-service.html">Terms of Service</a>
+            </p>
+        </footer>
+
+    </div>
+
+
+    <!-- 引入jQuery -->
+    <script src="js/jquery-3.7.1.min.js"></script>
+    
+    <script>
+        $(document).ready(function () {
+            // 从TXT文件读取数据并生成视频预览
+            $.get('videos.txt', function (data) {
+                // 将txt文件内容转换为JSON
+                var videos = JSON.parse(data);
+                var videoList = $('#video-list');
+                $.each(videos, function (index, video) {
+                    var videoItem = `
+                        <div class="video-item" data-video="${video.video}">
+                            <img src="${video.thumbnail}" alt="${video.title}">
+                            <p class="video-title">${video.title}</p>
+                        </div>`;
+                    videoList.append(videoItem);
+                });
+
+                // 点击事件跳转到播放页面
+                $('.video-item').click(function () {
+                    var videoSrc = $(this).data('video');
+                    window.location.href = 'video_player.html?video=' + videoSrc;
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
